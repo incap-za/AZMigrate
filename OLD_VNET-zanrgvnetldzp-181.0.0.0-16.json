@@ -1,0 +1,866 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name": {
+            "defaultValue": "zanrgvnetldzp-181.0.0.0-16",
+            "type": "String"
+        },
+        "networkSecurityGroups_zanrgnsgssp001_externalid": {
+            "defaultValue": "/subscriptions/a9593abb-4cb1-48f4-9079-d96da5966ac2/resourceGroups/zanrgrgldzp001/providers/Microsoft.Network/networkSecurityGroups/zanrgnsgssp001",
+            "type": "String"
+        },
+        "routeTables_zanrgfwrtp01_externalid": {
+            "defaultValue": "/subscriptions/a9593abb-4cb1-48f4-9079-d96da5966ac2/resourceGroups/zanrgrgldzp001/providers/Microsoft.Network/routeTables/zanrgfwrtp01",
+            "type": "String"
+        },
+        "networkSecurityGroups_zanrgnsgbaip01_databricks_externalid": {
+            "defaultValue": "/subscriptions/a9593abb-4cb1-48f4-9079-d96da5966ac2/resourceGroups/zanrgrgbaip001/providers/Microsoft.Network/networkSecurityGroups/zanrgnsgbaip01-databricks",
+            "type": "String"
+        },
+        "virtualNetworks_zanrgvnetdevd01_182_0_0_16_externalid": {
+            "defaultValue": "/subscriptions/5aa97888-f9b5-4111-8f25-c60883777092/resourceGroups/zanrgrgbaid001/providers/Microsoft.Network/virtualNetworks/zanrgvnetdevd01-182.0.0.16",
+            "type": "String"
+        },
+        "virtualNetworks_zanrgvnetldzp01_183_0_0_0_16_externalid": {
+            "defaultValue": "/subscriptions/165a5bd3-8aeb-44ea-91ff-452b2238d542/resourceGroups/zanrgrgldzp001/providers/Microsoft.Network/virtualNetworks/zanrgvnetldzp01-183.0.0.0-16",
+            "type": "String"
+        },
+        "virtualNetworks_zanrgvnetdevd01_184_0_0_0_16_externalid": {
+            "defaultValue": "/subscriptions/2e539c41-344e-4633-862a-cb1b928b177a/resourceGroups/zanrgrgbaid001/providers/Microsoft.Network/virtualNetworks/zanrgvnetdevd01-184.0.0.0-16",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2024-05-01",
+            "name": "[parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name')]",
+            "location": "southafricanorth",
+            "tags": {
+                "Company": "",
+                "Business Unit": "",
+                "Division": "",
+                "Department": "",
+                "Application": "",
+                "Role": "",
+                "Criticality": "",
+                "Business Owner": "",
+                "Application Owner": "",
+                "Technology Owner": "",
+                "CostCenter": "CostCenter"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "181.0.0.0/16"
+                    ]
+                },
+                "privateEndpointVNetPolicies": "Disabled",
+                "dhcpOptions": {
+                    "dnsServers": [
+                        "183.0.11.36",
+                        "10.20.14.14",
+                        "10.20.14.15",
+                        "10.20.14.10",
+                        "10.20.18.13"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "zanrgsntwafp-181.0.1.128-26",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntwafp-181.0.1.128-26')]",
+                        "properties": {
+                            "addressPrefix": "181.0.1.128/26",
+                            "networkSecurityGroup": {
+                                "id": "[parameters('networkSecurityGroups_zanrgnsgssp001_externalid')]"
+                            },
+                            "routeTable": {
+                                "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "southafricanorth",
+                                        "southafricawest"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "southafricanorth"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "AzureFirewallSubnet",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'AzureFirewallSubnet')]",
+                        "properties": {
+                            "addressPrefix": "181.0.1.0/26",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "southafricanorth",
+                                        "southafricawest"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "southafricanorth"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "AzureBastionSubnet",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'AzureBastionSubnet')]",
+                        "properties": {
+                            "addressPrefix": "181.0.3.64/27",
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "zanrgsntssp-181.0.2.0-24",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntssp-181.0.2.0-24')]",
+                        "properties": {
+                            "addressPrefix": "181.0.2.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[parameters('networkSecurityGroups_zanrgnsgssp001_externalid')]"
+                            },
+                            "routeTable": {
+                                "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "southafricanorth",
+                                        "southafricawest"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "GatewaySubnet",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'GatewaySubnet')]",
+                        "properties": {
+                            "addressPrefix": "181.0.0.0/26",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "southafricanorth"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "zanrgsntbaip-181.0.10.128-26",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntbaip-181.0.10.128-26')]",
+                        "properties": {
+                            "addressPrefix": "181.0.10.128/26",
+                            "networkSecurityGroup": {
+                                "id": "[parameters('networkSecurityGroups_zanrgnsgbaip01_databricks_externalid')]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "southafricanorth"
+                                    ]
+                                }
+                            ],
+                            "delegations": [
+                                {
+                                    "name": "7c07f96619c64dd6945c9a6834bc482e",
+                                    "id": "[concat(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntbaip-181.0.10.128-26'), '/delegations/7c07f96619c64dd6945c9a6834bc482e')]",
+                                    "properties": {
+                                        "serviceName": "Microsoft.Databricks/workspaces"
+                                    },
+                                    "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "zanrgsntbaip-181.0.10.64-26",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntbaip-181.0.10.64-26')]",
+                        "properties": {
+                            "addressPrefix": "181.0.10.64/26",
+                            "networkSecurityGroup": {
+                                "id": "[parameters('networkSecurityGroups_zanrgnsgbaip01_databricks_externalid')]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "southafricanorth"
+                                    ]
+                                }
+                            ],
+                            "delegations": [
+                                {
+                                    "name": "af411aabb3ba40a7af51fac7912c2740",
+                                    "id": "[concat(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntbaip-181.0.10.64-26'), '/delegations/af411aabb3ba40a7af51fac7912c2740')]",
+                                    "properties": {
+                                        "serviceName": "Microsoft.Databricks/workspaces"
+                                    },
+                                    "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "zanrgsntjbxp-181.0.3.0-27",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntjbxp-181.0.3.0-27')]",
+                        "properties": {
+                            "addressPrefix": "181.0.3.0/27",
+                            "networkSecurityGroup": {
+                                "id": "[parameters('networkSecurityGroups_zanrgnsgssp001_externalid')]"
+                            },
+                            "routeTable": {
+                                "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "southafricanorth",
+                                        "southafricawest"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "zanrgsntbaip-181.0.10.0-26",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntbaip-181.0.10.0-26')]",
+                        "properties": {
+                            "addressPrefix": "181.0.10.0/26",
+                            "routeTable": {
+                                "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.KeyVault",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Sql",
+                                    "locations": [
+                                        "southafricanorth"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "zanrgsnthry-181.0.11.0-27",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsnthry-181.0.11.0-27')]",
+                        "properties": {
+                            "addressPrefix": "181.0.11.0/27",
+                            "routeTable": {
+                                "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                            },
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "name": "zanrgsntsapdcp-181.0.11.32-27",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntsapdcp-181.0.11.32-27')]",
+                        "properties": {
+                            "addressPrefix": "181.0.11.32/27",
+                            "routeTable": {
+                                "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                            },
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                    }
+                ],
+                "virtualNetworkPeerings": [
+                    {
+                        "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-to-zanrgvnetdevd01-182.0.0.16')]",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/virtualNetworkPeerings', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-to-zanrgvnetdevd01-182.0.0.16'))]",
+                        "properties": {
+                            "peeringState": "Connected",
+                            "peeringSyncLevel": "FullyInSync",
+                            "remoteVirtualNetwork": {
+                                "id": "[parameters('virtualNetworks_zanrgvnetdevd01_182_0_0_16_externalid')]"
+                            },
+                            "allowVirtualNetworkAccess": true,
+                            "allowForwardedTraffic": true,
+                            "allowGatewayTransit": true,
+                            "useRemoteGateways": false,
+                            "doNotVerifyRemoteGateways": false,
+                            "peerCompleteVnets": true,
+                            "remoteAddressSpace": {
+                                "addressPrefixes": [
+                                    "182.0.0.0/16"
+                                ]
+                            },
+                            "remoteVirtualNetworkAddressSpace": {
+                                "addressPrefixes": []
+                            }
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+                    },
+                    {
+                        "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-to-zanrgvnetldzp-183.0.0.0-16')]",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/virtualNetworkPeerings', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-to-zanrgvnetldzp-183.0.0.0-16'))]",
+                        "properties": {
+                            "peeringState": "Connected",
+                            "peeringSyncLevel": "FullyInSync",
+                            "remoteVirtualNetwork": {
+                                "id": "[parameters('virtualNetworks_zanrgvnetldzp01_183_0_0_0_16_externalid')]"
+                            },
+                            "allowVirtualNetworkAccess": true,
+                            "allowForwardedTraffic": true,
+                            "allowGatewayTransit": true,
+                            "useRemoteGateways": false,
+                            "doNotVerifyRemoteGateways": false,
+                            "peerCompleteVnets": true,
+                            "remoteAddressSpace": {
+                                "addressPrefixes": [
+                                    "183.0.0.0/16"
+                                ]
+                            },
+                            "remoteVirtualNetworkAddressSpace": {
+                                "addressPrefixes": [
+                                    "183.0.0.0/16"
+                                ]
+                            }
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+                    },
+                    {
+                        "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-zanrgvnetdevd01-184.0.0.0-16')]",
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/virtualNetworkPeerings', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-zanrgvnetdevd01-184.0.0.0-16'))]",
+                        "properties": {
+                            "peeringState": "Connected",
+                            "peeringSyncLevel": "FullyInSync",
+                            "remoteVirtualNetwork": {
+                                "id": "[parameters('virtualNetworks_zanrgvnetdevd01_184_0_0_0_16_externalid')]"
+                            },
+                            "allowVirtualNetworkAccess": true,
+                            "allowForwardedTraffic": true,
+                            "allowGatewayTransit": true,
+                            "useRemoteGateways": false,
+                            "doNotVerifyRemoteGateways": false,
+                            "peerCompleteVnets": true,
+                            "remoteAddressSpace": {
+                                "addressPrefixes": [
+                                    "184.0.0.0/16"
+                                ]
+                            },
+                            "remoteVirtualNetworkAddressSpace": {
+                                "addressPrefixes": [
+                                    "184.0.0.0/16"
+                                ]
+                            }
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+                    }
+                ],
+                "enableDdosProtection": false
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/AzureBastionSubnet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.3.64/27",
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/AzureFirewallSubnet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.1.0/26",
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "southafricanorth",
+                            "southafricawest"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Sql",
+                        "locations": [
+                            "southafricanorth"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/GatewaySubnet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.0.0/26",
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.Sql",
+                        "locations": [
+                            "southafricanorth"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsntbaip-181.0.10.0-26')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.10.0/26",
+                "routeTable": {
+                    "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.KeyVault",
+                        "locations": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Sql",
+                        "locations": [
+                            "southafricanorth"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsntbaip-181.0.10.128-26')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.10.128/26",
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_zanrgnsgbaip01_databricks_externalid')]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.KeyVault",
+                        "locations": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Sql",
+                        "locations": [
+                            "southafricanorth"
+                        ]
+                    }
+                ],
+                "delegations": [
+                    {
+                        "name": "7c07f96619c64dd6945c9a6834bc482e",
+                        "id": "[concat(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntbaip-181.0.10.128-26'), '/delegations/7c07f96619c64dd6945c9a6834bc482e')]",
+                        "properties": {
+                            "serviceName": "Microsoft.Databricks/workspaces"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                    }
+                ],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsntbaip-181.0.10.64-26')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.10.64/26",
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_zanrgnsgbaip01_databricks_externalid')]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.KeyVault",
+                        "locations": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Sql",
+                        "locations": [
+                            "southafricanorth"
+                        ]
+                    }
+                ],
+                "delegations": [
+                    {
+                        "name": "af411aabb3ba40a7af51fac7912c2740",
+                        "id": "[concat(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), 'zanrgsntbaip-181.0.10.64-26'), '/delegations/af411aabb3ba40a7af51fac7912c2740')]",
+                        "properties": {
+                            "serviceName": "Microsoft.Databricks/workspaces"
+                        },
+                        "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+                    }
+                ],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsnthry-181.0.11.0-27')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.11.0/27",
+                "routeTable": {
+                    "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                },
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsntjbxp-181.0.3.0-27')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.3.0/27",
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_zanrgnsgssp001_externalid')]"
+                },
+                "routeTable": {
+                    "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.KeyVault",
+                        "locations": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "southafricanorth",
+                            "southafricawest"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsntsapdcp-181.0.11.32-27')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.11.32/27",
+                "routeTable": {
+                    "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                },
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsntssp-181.0.2.0-24')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.2.0/24",
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_zanrgnsgssp001_externalid')]"
+                },
+                "routeTable": {
+                    "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.KeyVault",
+                        "locations": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "southafricanorth",
+                            "southafricawest"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/zanrgsntwafp-181.0.1.128-26')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "181.0.1.128/26",
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_zanrgnsgssp001_externalid')]"
+                },
+                "routeTable": {
+                    "id": "[parameters('routeTables_zanrgfwrtp01_externalid')]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.KeyVault",
+                        "locations": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "southafricanorth",
+                            "southafricawest"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Sql",
+                        "locations": [
+                            "southafricanorth"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-to-zanrgvnetdevd01-182.0.0.16')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "peeringState": "Connected",
+                "peeringSyncLevel": "FullyInSync",
+                "remoteVirtualNetwork": {
+                    "id": "[parameters('virtualNetworks_zanrgvnetdevd01_182_0_0_16_externalid')]"
+                },
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": true,
+                "allowGatewayTransit": true,
+                "useRemoteGateways": false,
+                "doNotVerifyRemoteGateways": false,
+                "peerCompleteVnets": true,
+                "remoteAddressSpace": {
+                    "addressPrefixes": [
+                        "182.0.0.0/16"
+                    ]
+                },
+                "remoteVirtualNetworkAddressSpace": {
+                    "addressPrefixes": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-to-zanrgvnetldzp-183.0.0.0-16')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "peeringState": "Connected",
+                "peeringSyncLevel": "FullyInSync",
+                "remoteVirtualNetwork": {
+                    "id": "[parameters('virtualNetworks_zanrgvnetldzp01_183_0_0_0_16_externalid')]"
+                },
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": true,
+                "allowGatewayTransit": true,
+                "useRemoteGateways": false,
+                "doNotVerifyRemoteGateways": false,
+                "peerCompleteVnets": true,
+                "remoteAddressSpace": {
+                    "addressPrefixes": [
+                        "183.0.0.0/16"
+                    ]
+                },
+                "remoteVirtualNetworkAddressSpace": {
+                    "addressPrefixes": [
+                        "183.0.0.0/16"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2024-05-01",
+            "name": "[concat(parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '/', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'), '-zanrgvnetdevd01-184.0.0.0-16')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_zanrgvnetldzp_181_0_0_0_16_name'))]"
+            ],
+            "properties": {
+                "peeringState": "Connected",
+                "peeringSyncLevel": "FullyInSync",
+                "remoteVirtualNetwork": {
+                    "id": "[parameters('virtualNetworks_zanrgvnetdevd01_184_0_0_0_16_externalid')]"
+                },
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": true,
+                "allowGatewayTransit": true,
+                "useRemoteGateways": false,
+                "doNotVerifyRemoteGateways": false,
+                "peerCompleteVnets": true,
+                "remoteAddressSpace": {
+                    "addressPrefixes": [
+                        "184.0.0.0/16"
+                    ]
+                },
+                "remoteVirtualNetworkAddressSpace": {
+                    "addressPrefixes": [
+                        "184.0.0.0/16"
+                    ]
+                }
+            }
+        }
+    ]
+}

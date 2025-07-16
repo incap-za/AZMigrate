@@ -1,0 +1,489 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "routeTables_rt_zanrgsqlmip01_name": {
+            "defaultValue": "rt-zanrgsqlmip01",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/routeTables",
+            "apiVersion": "2024-07-01",
+            "name": "[parameters('routeTables_rt_zanrgsqlmip01_name')]",
+            "location": "southafricanorth",
+            "tags": {
+                "Deployed By": "Dhillan Kalyan - Dimension Data"
+            },
+            "properties": {
+                "disableBgpRoutePropagation": false,
+                "routes": [
+                    {
+                        "name": "SqlManagement_0",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_0')]",
+                        "properties": {
+                            "addressPrefix": "65.55.188.0/24",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_1",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_1')]",
+                        "properties": {
+                            "addressPrefix": "207.68.190.32/27",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_2",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_2')]",
+                        "properties": {
+                            "addressPrefix": "13.106.78.32/27",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_3",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_3')]",
+                        "properties": {
+                            "addressPrefix": "13.106.174.32/27",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_4",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_4')]",
+                        "properties": {
+                            "addressPrefix": "13.106.4.96/27",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_5",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_5')]",
+                        "properties": {
+                            "addressPrefix": "104.214.108.80/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_6",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_6')]",
+                        "properties": {
+                            "addressPrefix": "52.179.184.76/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_7",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_7')]",
+                        "properties": {
+                            "addressPrefix": "52.187.116.202/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_8",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_8')]",
+                        "properties": {
+                            "addressPrefix": "52.177.202.6/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_9",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_9')]",
+                        "properties": {
+                            "addressPrefix": "102.133.152.0/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_10",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_10')]",
+                        "properties": {
+                            "addressPrefix": "102.133.155.224/27",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_11",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_11')]",
+                        "properties": {
+                            "addressPrefix": "102.133.72.35/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_12",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_12')]",
+                        "properties": {
+                            "addressPrefix": "40.127.3.232/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_13",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_13')]",
+                        "properties": {
+                            "addressPrefix": "104.211.228.159/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "SqlManagement_14",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'SqlManagement_14')]",
+                        "properties": {
+                            "addressPrefix": "102.133.167.242/32",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "Microsoft.Sql-managedInstances_UseOnly_subnet-183-0-11-128-27-to-vnetlocal",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'Microsoft.Sql-managedInstances_UseOnly_subnet-183-0-11-128-27-to-vnetlocal')]",
+                        "properties": {
+                            "addressPrefix": "183.0.11.128/27",
+                            "nextHopType": "VnetLocal"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "Microsoft.Sql-managedInstances_UseOnly_mi-AzureActiveDirectory",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'Microsoft.Sql-managedInstances_UseOnly_mi-AzureActiveDirectory')]",
+                        "properties": {
+                            "addressPrefix": "AzureActiveDirectory",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "Microsoft.Sql-managedInstances_UseOnly_mi-Storage.southafricanorth",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'Microsoft.Sql-managedInstances_UseOnly_mi-Storage.southafricanorth')]",
+                        "properties": {
+                            "addressPrefix": "Storage.southafricanorth",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "Microsoft.Sql-managedInstances_UseOnly_mi-Storage.southafricawest",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'Microsoft.Sql-managedInstances_UseOnly_mi-Storage.southafricawest')]",
+                        "properties": {
+                            "addressPrefix": "Storage.southafricawest",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "Microsoft.Sql-managedInstances_UseOnly_mi-OneDsCollector",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'Microsoft.Sql-managedInstances_UseOnly_mi-OneDsCollector')]",
+                        "properties": {
+                            "addressPrefix": "OneDsCollector",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "Microsoft.Sql-managedInstances_UseOnly_optional-AzureCloud.southafricanorth",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'Microsoft.Sql-managedInstances_UseOnly_optional-AzureCloud.southafricanorth')]",
+                        "properties": {
+                            "addressPrefix": "AzureCloud.southafricanorth",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    },
+                    {
+                        "name": "Microsoft.Sql-managedInstances_UseOnly_optional-AzureCloud.southafricawest",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', parameters('routeTables_rt_zanrgsqlmip01_name'), 'Microsoft.Sql-managedInstances_UseOnly_optional-AzureCloud.southafricawest')]",
+                        "properties": {
+                            "addressPrefix": "AzureCloud.southafricawest",
+                            "nextHopType": "Internet"
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/Microsoft.Sql-managedInstances_UseOnly_mi-AzureActiveDirectory')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "AzureActiveDirectory",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/Microsoft.Sql-managedInstances_UseOnly_mi-OneDsCollector')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "OneDsCollector",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/Microsoft.Sql-managedInstances_UseOnly_mi-Storage.southafricanorth')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "Storage.southafricanorth",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/Microsoft.Sql-managedInstances_UseOnly_mi-Storage.southafricawest')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "Storage.southafricawest",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/Microsoft.Sql-managedInstances_UseOnly_optional-AzureCloud.southafricanorth')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "AzureCloud.southafricanorth",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/Microsoft.Sql-managedInstances_UseOnly_optional-AzureCloud.southafricawest')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "AzureCloud.southafricawest",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/Microsoft.Sql-managedInstances_UseOnly_subnet-183-0-11-128-27-to-vnetlocal')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "183.0.11.128/27",
+                "nextHopType": "VnetLocal"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_0')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "65.55.188.0/24",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_1')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "207.68.190.32/27",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_10')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "102.133.155.224/27",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_11')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "102.133.72.35/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_12')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "40.127.3.232/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_13')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "104.211.228.159/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_14')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "102.133.167.242/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_2')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "13.106.78.32/27",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_3')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "13.106.174.32/27",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_4')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "13.106.4.96/27",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_5')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "104.214.108.80/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_6')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "52.179.184.76/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_7')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "52.187.116.202/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_8')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "52.177.202.6/32",
+                "nextHopType": "Internet"
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2024-07-01",
+            "name": "[concat(parameters('routeTables_rt_zanrgsqlmip01_name'), '/SqlManagement_9')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', parameters('routeTables_rt_zanrgsqlmip01_name'))]"
+            ],
+            "properties": {
+                "addressPrefix": "102.133.152.0/32",
+                "nextHopType": "Internet"
+            }
+        }
+    ]
+}

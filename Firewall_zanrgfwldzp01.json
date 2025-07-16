@@ -1,0 +1,64 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "azureFirewalls_zanrgfwldzp01_name": {
+            "defaultValue": "zanrgfwldzp01",
+            "type": "String"
+        },
+        "publicIPAddresses_zanrgfwpip001_externalid": {
+            "defaultValue": "/subscriptions/89b4f2f0-5607-48ac-9acc-81f64550dc19/resourceGroups/zanrgrgldzp001/providers/Microsoft.Network/publicIPAddresses/zanrgfwpip001",
+            "type": "String"
+        },
+        "virtualNetworks_zanrgvnetldzp_10_20_40_0_24_externalid": {
+            "defaultValue": "/subscriptions/89b4f2f0-5607-48ac-9acc-81f64550dc19/resourceGroups/zanrgrgldzp001/providers/Microsoft.Network/virtualNetworks/zanrgvnetldzp-10.20.40.0-24",
+            "type": "String"
+        },
+        "firewallPolicies_FirewallPolicy_premium_3a7601_externalid": {
+            "defaultValue": "/subscriptions/89b4f2f0-5607-48ac-9acc-81f64550dc19/resourceGroups/zanrgrgldzp001/providers/Microsoft.Network/firewallPolicies/FirewallPolicy_premium_3a7601",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/azureFirewalls",
+            "apiVersion": "2024-05-01",
+            "name": "[parameters('azureFirewalls_zanrgfwldzp01_name')]",
+            "location": "southafricanorth",
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ],
+            "properties": {
+                "sku": {
+                    "name": "AZFW_VNet",
+                    "tier": "Premium"
+                },
+                "threatIntelMode": "Alert",
+                "additionalProperties": {},
+                "ipConfigurations": [
+                    {
+                        "name": "zanrgfwpip001",
+                        "id": "[concat(resourceId('Microsoft.Network/azureFirewalls', parameters('azureFirewalls_zanrgfwldzp01_name')), '/azureFirewallIpConfigurations/zanrgfwpip001')]",
+                        "properties": {
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_zanrgfwpip001_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_zanrgvnetldzp_10_20_40_0_24_externalid'), '/subnets/AzureFirewallSubnet')]"
+                            }
+                        }
+                    }
+                ],
+                "networkRuleCollections": [],
+                "applicationRuleCollections": [],
+                "natRuleCollections": [],
+                "firewallPolicy": {
+                    "id": "[parameters('firewallPolicies_FirewallPolicy_premium_3a7601_externalid')]"
+                }
+            }
+        }
+    ]
+}
