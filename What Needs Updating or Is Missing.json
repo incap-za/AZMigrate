@@ -1,0 +1,52 @@
+What Needs Updating or Is Missing
+🔹1. Missing Bidirectional Rule for New VNET 10.20.240.0/24
+You specified a new VNET 10.20.240.0/24, but no rules reference it. This network must have both inbound and outbound rules just like 10.20.48.0/24.
+
+✅ Recommendation – Add:
+
+json
+Copy
+Edit
+{
+  "ruleType": "NetworkRule",
+  "name": "NewLandingZone-to-AllNetworks",
+  "ipProtocols": ["Any"],
+  "sourceAddresses": ["10.20.240.0/24"],
+  "destinationAddresses": [
+    "181.0.0.0/16", "182.0.0.0/16", "183.0.0.0/16", "184.0.0.0/16", "10.20.48.0/24"
+  ],
+  "destinationPorts": ["*"]
+}
+And the reverse rule:
+
+json
+Copy
+Edit
+{
+  "ruleType": "NetworkRule",
+  "name": "AllNetworks-to-NewLandingZone",
+  "ipProtocols": ["Any"],
+  "sourceAddresses": [
+    "181.0.0.0/16", "182.0.0.0/16", "183.0.0.0/16", "184.0.0.0/16", "10.20.48.0/24"
+  ],
+  "destinationAddresses": ["10.20.240.0/24"],
+  "destinationPorts": ["*"]
+}
+🔹2. DNS Rules Missing for 10.20.240.0/24
+DNS access is granted for 10.20.40.0/24, 10.20.48.0/24, but not for 10.20.240.0/24.
+
+✅ Recommendation – Add:
+
+json
+Copy
+Edit
+{
+  "ruleType": "NetworkRule",
+  "name": "Allow-DNS-NewLandingZone-10.20.240",
+  "ipProtocols": ["UDP"],
+  "sourceAddresses": ["10.20.240.0/24"],
+  "destinationAddresses": [
+    "169.63.129.16", "209.244.0.3", "209.244.0.4"
+  ],
+  "destinationPorts": ["53"]
+}
